@@ -64,7 +64,7 @@ class Matrix
 
             for (int j = 0; j < this.n; j++)
             {
-                arr[i,j] = v[j];
+                arr[j,i] = v[j];
             }
         }
     }
@@ -119,7 +119,7 @@ class Matrix
         {
             return new Matrix(3, 3);
         }
-        double max_sum = 0;
+        double max_sum = Int32.MinValue;
 
         for (int i = 0; i < this.n-2; i++) 
         { 
@@ -156,7 +156,7 @@ class Matrix
     // 3
     public static Matrix f(Matrix a, Matrix b, Matrix c)
     {
-        return a.tranport() + 2 * b - c.tranport();
+        return a.tranport() + 2 * b + c.tranport();
     }
 
     public static Matrix operator +(Matrix m1, Matrix m2)

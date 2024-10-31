@@ -101,20 +101,20 @@ class Tests
             Console.WriteLine("Числа в входном файле: ");
             for (int j = 0; j < arr.Length; j++)
             {
-                Console.Write(arr[j]);
+                Console.Write($"{arr[j]} ");
             }
             Console.WriteLine();
 
-            int n = UserInput.intInput(false, "Введите число n: ");
             int m = UserInput.intInput(false, "Введите число m: ");
+            int n = UserInput.intInput(false, "Введите число n: ");
 
             MyFile.NewNumbersBin($"exe2{i}.bin", $"outexe2{i}.bin", n, m);
 
-            arr = MyFile.ReadNumbersBin($"exe2{i}.bin");
+            arr = MyFile.ReadNumbersBin($"outexe2{i}.bin");
             Console.WriteLine("Числа в выходном файле: ");
             for (int j = 0; j < arr.Length; j++)
             {
-                Console.Write(arr[j]);
+                Console.Write($"{arr[j]} ");
             }
             Console.WriteLine();
 
@@ -146,8 +146,8 @@ class Tests
 
             for (int j = 0;j < units.Length;j++) 
             {
-                units[i].type = types[random.Next(types.Length)];
-                units[i].weight = random.Next(1, 100);
+                units[j].type = types[random.Next(0, types.Length)];
+                units[j].weight = random.Next(1, 100);
             }
 
             people[i].baggage = units;
@@ -179,7 +179,8 @@ class Tests
 
             int[] arr = MyFile.ReadNumbersTxt($"6{i + 1}.txt");
             Console.WriteLine("Числа в файле: ");
-            foreach (int n in arr) { Console.Write($"n "); }
+            foreach (int n in arr) { Console.Write($"{n} "); }
+            Console.WriteLine();
 
             Console.WriteLine($"max - min = {MyFile.Diff($"6{i + 1}.txt")}");
 

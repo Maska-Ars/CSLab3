@@ -45,7 +45,7 @@ class MyFile
     public static int[] ReadNumbersBin(string file)
     {
 
-        using (BinaryReader reader = new BinaryReader(File.Open("person.dat", FileMode.Open)))
+        using (BinaryReader reader = new BinaryReader(File.Open(file, FileMode.Open)))
         { 
             int k = reader.ReadInt32();
             int[] arr = new int[k];
@@ -65,15 +65,19 @@ class MyFile
         for (int i = 0; i < arr.Length; i++)
         {
             if (arr[i] % m == 0 && arr[i] % n != 0)
+            {
                 k++;
+            }
         }
         int[] newArr = new int[k];
         k = 0;
         for (int i = 0; i < arr.Length; i++)
         {
             if (arr[i] % m == 0 && arr[i] % n != 0)
-                arr[k] = arr[i];
+            {
+                newArr[k] = arr[i];
                 k++;
+            }
         }
 
         MyFile.WriteNumbersBin(outFile, newArr);
@@ -143,11 +147,11 @@ class MyFile
             string text = reader.ReadToEnd();
             string[] split_text = text.Split("\n");
 
-            int[] arr = new int[split_text.Length];
+            int[] arr = new int[split_text.Length-1];
 
-            for (int i = 0; i < split_text.Length; i++)
+            for (int i = 0; i < split_text.Length-1; i++)
             {
-                arr[i] = int.Parse(split_text[i]);
+                    arr[i] = int.Parse(split_text[i]);
             }
 
             return arr;
@@ -193,16 +197,16 @@ class MyFile
     // 7
     public static int MinElTxt(string file)
     {
-        int min_n = Int32.MinValue;
+        int min_n = Int32.MaxValue;
         using (StreamReader reader = new StreamReader(file))
         {
             string text = reader.ReadToEnd();
             string[] split_text = text.Split("\n");
 
-            for (int i = 0; i < split_text.Length; i++)
+            for (int i = 0; i < split_text.Length-1; i++)
             {
                 string[] split_line = split_text[i].Split(" ");
-                for (int j = 0; j < split_text.Length; j++)
+                for (int j = 0; j < split_line.Length; j++)
                 {
                     int n = int.Parse(split_line[j]);
                     if (min_n > n) { min_n = n; }
